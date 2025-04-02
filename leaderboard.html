@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizWhiz Leaderboard</title>
+    <style>
+        :root {
+            --primary: #6a0dad;
+            --primary-dark: #4a0080;
+            --primary-light: #9955e8;
+            --accent: #ff9100;
+            --text-light: #f5f5f5;
+            --text-secondary: #b0b0b0;
+            --background: #1a1a2e;
+            --card-bg: #222340;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text-light);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-icon {
+            background-color: var(--accent);
+            color: var(--primary-dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background-color: var(--card-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--card-bg);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-dark);
+            border: none;
+            border-radius: 4px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .filter-btn:hover {
+            background-color: var(--primary);
+        }
+        
+        .filter-btn.active {
+            background-color: var(--primary-light);
+        }
+        
+        .search-input {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            width: 200px;
+        }
+        
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .leaderboard-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .leaderboard-header {
+            background-color: var(--primary);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 80px 1fr 150px 150px 150px;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .leaderboard-body {
+            padding: 0.5rem 0;
+        }
+        
+        .leaderboard-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 150px 150px 150px;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .leaderboard-row:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .leaderboard-row.current-user {
+            background-color: rgba(106, 13, 173, 0.2);
+            border-left: 4px solid var(--primary-light);
+        }
+        
+        .rank {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .medal {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .medal-1 {
+            background-color: gold;
+            color: #000;
+        }
+        
+        .medal-2 {
+            background-color: silver;
+            color: #000;
+        }
+        
+        .medal-3 {
+            background-color: #cd7f32; /* bronze */
+            color: #000;
+        }
+        
+        .student {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .student-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .student-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .student-name {
+            font-weight: 500;
+        }
+        
+        .student-class {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .score {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        .quizzes {
+            color: var(--text-secondary);
+        }
+        
+        .progress-container {
+            position: relative;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+            border: none;
+            border-radius: 4px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .page-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .page-btn.active {
+            background-color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .trophy-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 6px;
+        }
+        
+        @media (max-width: 1024px) {
+            .leaderboard-header, .leaderboard-row {
+                grid-template-columns: 60px 1fr 100px 100px;
+            }
+            
+            .progress-column {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .leaderboard-header, .leaderboard-row {
+                grid-template-columns: 50px 1fr 80px;
+            }
+            
+            .quizzes-column {
+                display: none;
+            }
+            
+            .filter-bar {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .filter-options {
+                flex-wrap: wrap;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">Q</div>
+                <div class="logo-text">QuizWhiz Leaderboard</div>
+            </div>
+            
+            <div class="user-profile">
+                <div class="avatar">JD</div>
+                <div class="user-name">John Doe</div>
+            </div>
+        </div>
+        
+        <div class="filter-bar">
+            <div class="filter-title">🏆 Top Performing Students</div>
+            
+            <div class="filter-options">
+                <button class="filter-btn active">All Time</button>
+                <button class="filter-btn">This Month</button>
+                <button class="filter-btn">This Week</button>
+                <input type="text" class="search-input" placeholder="Search student...">
+            </div>
+        </div>
+        
+        <div class="leaderboard-container">
+            <div class="leaderboard-header">
+                <div>Rank</div>
+                <div>Student</div>
+                <div>Avg. Score</div>
+                <div class="quizzes-column">Quizzes</div>
+                <div class="progress-column">Progress</div>
+            </div>
+            
+            <div class="leaderboard-body">
+                <div class="leaderboard-row">
+                    <div class="rank">
+                        <div class="medal medal-1">1</div>
+                    </div>
+                    <div class="student">
+                        <div class="student-avatar">AJ</div>
+                        <div class="student-info">
+                            <div class="student-name">Alice Johnson</div>
+                            <div class="student-class">Computer Science</div>
+                        </div>
+                    </div>
+                    <div class="score">96%</div>
+                    <div class="quizzes quizzes-column">24 Completed</div>
+                    <div class="progress-column">
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 96%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-row">
+                    <div class="rank">
+                        <div class="medal medal-2">2</div>
+                    </div>
+                    <div class="student">
+                        <div class="student-avatar">BW</div>
+                        <div class="student-info">
+                            <div class="student-name">Bob Williams</div>
+                            <div class="student-class">Data Science</div>
+                        </div>
+                    </div>
+                    <div class="score">93%</div>
+                    <div class="quizzes quizzes-column">22 Completed</div>
+                    <div class="progress-column">
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 93%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-row">
+                    <div class="rank">
+                        <div class="medal medal-3">3</div>
+                    </div>
+                    <div class="student">
+                        <div class="student-avatar">CT</div>
+                        <div class="student-info">
+                            <div class="student-name">Charlie Thompson</div>
+                            <div class="student-class">Web Development</div>
+                        </div>
+                    </div>
+                    <div class="score">91%</div>
+                    <div class="quizzes quizzes-column">21 Completed</div>
+                    <div class="progress-column">
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 91%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-row">
+                    <div class="rank">4</div>
+                    <div class="student">
+                        <div class="student-avatar">DM</div>
+                        <div class="student-info">
+                            <div class="student-name">Diana Miller</div>
+                            <div class="student-class">Machine Learning</div>
+                        </div>
+                    </div>
+                    <div class="score">89%</div>
+                    <div class="quizzes quizzes-column">20 Completed</div>
+                    <div class="progress-column">
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 89%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-row current-user">
+                    <div class="rank">5</div>
+                    <div class="student">
+                        <div class="student-avatar">JD</div>
+                        <div class="student-info">
+                            <div class="student-name">John Doe</div>
+                            <div class="student-class">Mobile Development</div>
+                        </div>
+                    </div>
+                    <div class="score">85%</div>
+                    <div class="quizzes quizzes-column">19 Completed</div>
+                    <div class="progress-column">
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-row">
+                    <div class="rank">6</div>
+                    <div class="student">
+                        <div class="student-avatar">EW</div>
+                        <div class="student-info">
+                            <div class="student-name">Emma Wilson</div>
+                            <div class="student-class">UI/UX Design</div>
+                        </div>
+                    </div>
+                    <div class="score">84%</div>
+                    <div class="quizzes quizzes-column">18 Completed</div>
+                    <div class="progress-column">
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 84%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-row">
+                    <div class="rank">7</div>
+                    <div class="student">
+                        <div class="student-avatar">FB</div>
+                        <div class="student-info">
+                            <div class="student-name">Frank Brown</div>
+                            <div class="student-class">Cybersecurity</div>
+                        </div>
+                    </div>
+                    <div class="score">82%</div>
+                    <div class="quizzes quizzes-column">17 Completed</div>
+                    <div class="progress-column">
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 82%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-row">
+                    <div class="rank">8</div>
+                    <div class="student">
+                        <div class="student-avatar">GM</div>
+                        <div class="student-info">
+                            <div class="student-name">Grace Martinez</div>
+                            <div class="student-class">Game Development</div>
+                        </div>
+                    </div>
+                    <div class="score">80%</div>
+                    <div class="quizzes quizzes-column">16 Completed</div>
+                    <div class="progress-column">
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-row">
+                    <div class="rank">9</div>
+                    <div class="student">
+                        <div class="student-avatar">HS</div>
+                        <div class="student-info">
+                            <div class="student-name">Henry Smith</div>
+                            <div class="student-class">Database Systems</div>
+                        </div>
+                    </div>
+                    <div class="score">78%</div>
+                    <div class="quizzes quizzes-column">15 Completed</div>
+                    <div class="progress-column">
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 78%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-row">
+                    <div class="rank">10</div>
+                    <div class="student">
+                        <div class="student-avatar">IJ</div>
+                        <div class="student-info">
+                            <div class="student-name">Isabella Jones</div>
+                            <div class="student-class">Cloud Computing</div>
+                        </div>
+                    </div>
+                    <div class="score">75%</div>
+                    <div class="quizzes quizzes-column">14 Completed</div>
+                    <div class="progress-column">
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pagination">
+            <button class="page-btn">←</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">→</button>
+        </div>
+    </div>
+</body>
+</html>

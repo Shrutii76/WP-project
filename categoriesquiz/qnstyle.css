@@ -1,0 +1,136 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #5145BA;
+}
+.quiz-container {
+    width: 500px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.13);
+    overflow: hidden;
+    padding: 20px;
+    text-align: center;
+}
+.quiz-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px;
+    border-bottom: 2px solid #ddd;
+}
+.quiz-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.quiz-timer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #32313C;
+    color: white;
+    padding: 7px 12px;
+    border-radius: 6px;
+}
+.question-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 20px 0;
+}
+.answer-options {
+    list-style: none;
+    padding: 0;
+}
+.answer-option {
+    background: #F3F1FF;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 2px solid #B5ACFF;
+}
+.answer-option:hover {
+    background: #dad5fd;
+}
+.correct {
+    background: #D4EDDA;
+    border-color: #28A745;
+    color: #155724;
+}
+.incorrect {
+    background: #F8D7DA;
+    border-color: #DC3545;
+    color: #721C24;
+}
+.quiz-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+.next-question-btn {
+    background: #5145BA;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+ display: inline-flex;
+gap:5px;
+align-items: center;
+padding:9px 17px ;
+
+  
+}
+.next-question-btn:hover {
+    background: #403795;
+}
+.result-container {
+    display: none;
+    text-align: center;
+}
+.result-container h2 {
+    margin-bottom: 20px;
+    margin-top:10px;
+}
+.restart-btn {
+    background: #403795;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+    height: 40px;
+    font-size: 16px;
+
+}
+.restart-btn:hover {
+    background: #110f29;
+}
+.result-img{
+width:140px;
+}
+
+.quiz-title{
+color:#4B2E6F;
+font-family: Cambria, Georgia, serif;
+font-size: 30px; 
+font-style: normal;
+font-variant: normal; 
+font-weight: 700;
+line-height: 26.4px;
+}

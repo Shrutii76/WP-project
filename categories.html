@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Categories</title>
+    <link rel="stylesheet" href="categ.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="navbar" >
+                 <div class="logo">
+                 <img src="logo design/logo.png" alt="Logo" loading="eager">
+         </div>
+             <div class="nav"> 
+                 <a href="home.html">Home</a>
+                 <a href="categories.html">Categories</a>
+                 <a href="leaderboard.html">Leaderboard</a>
+                 <a href="about.html">About Us</a>
+                 <a href="contact.html">Contact Us</a>
+             </div>
+            <div class="button">
+                <button class="move  box1" onclick="openModal('modal2')">Get started now</button>
+           
+                <button class="move box2" onclick="openModal('modal1')">Log in</button>
+          </div>
+         </div>
+         </nav>
+
+    </header>
+    <main>
+    <!-- modal for login -->
+    <div class="modal-bg" id="modal1">
+        <div class="modal-box  mod1">
+            <span class="close-btn" onclick="closeModal('modal1')"><i class="fa-solid fa-xmark"></i></span>
+            <form onsubmit="return validateLoginForm()">
+           <h2>Login to QUIZ WHIZ</h2>
+            <input type="text" required placeholder="Email or Username"><br>
+            <input type="password" required placeholder="Password">
+            <p class="password"><a href="password.html">Forgot Password?</a></p>
+            <button class="btn">Log In</button>
+            <p>Not registered?
+                <a href="form.html">Create an account</a>
+            </p>
+            </form>
+        </div>
+    </div>
+    <!--modal for sign up-->
+    <div class="modal-bg" id="modal2">
+        <div class="modal-box  mod2"> 
+         
+            <span class="close-btn" onclick="closeModal('modal2')"><i class="fa-solid fa-xmark"></i></span>
+           
+                <h1>Sign Up</h1>
+                <p>Please fill in this form to create an account.</p>
+                <hr>
+                <form onsubmit="return validateForm(),validateSignUpForm()"> 
+                    <div class="form-group">
+                        <!-- <label for="name">Full Name</label> -->
+                        <input type="text" id="name" placeholder="Enter Your Name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="username">Username</label> -->
+                        <input type="text" id="username" placeholder="Enter Username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="email">Email</label> -->
+                        <input type="email" id="email" placeholder="Enter Your Email address" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="password">Password</label> -->
+                        <input type="password" id="password" placeholder="Enter Password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="confirm_password">Confirm Password</label> -->
+                        <input type="password" id="confirm_password" placeholder="Confirm Password" name="confirm_password" required>
+                    </div>
+                    <div class="remember">
+                        <input type="checkbox" required name="remember" id="agree">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <p class="terms">By creating an account, you agree to our <a href="#">Terms & Privacy</a>.</p>
+                    <button type="submit" class="btn">Create Account</button>
+                 </form> 
+                <div class="alternative">
+                    <p>Already have an account? <a href="#">Log in</a></p>
+                </div>
+           
+            </div>
+            </div>
+
+
+    <section class="categories-container">
+        <h1>Popular Categories</h1>
+        <section class="section-1">
+        <div class="category-card">
+            <img src="images/general knowledge.jpg" alt="General Knowledge" loading="eager">
+            <h3>General Knowledge</h3>
+            <p>Test your knowledge on various general topics.</p>
+            <a href="categoriesquiz/gkquiz.html">
+            <button>Start Quiz</button>
+        </a>
+        </div>
+        <div class="category-card">
+            <img src="images/science.jpg" alt="Science & Technology" loading="eager">
+            <h3>Science & Technology</h3>
+            <p>Explore quizzes on physics, chemistry, and innovations.</p>
+        <a href="categoriesquiz/sciquiz.html">  <button>Start Quiz</button></a>
+        </div>
+        <div class="category-card">
+            <img src="images/history.jpg" alt="History & Geography" loading="eager">
+            <h3>History & Geography</h3>
+            <p>Test your knowledge of historical events and world geography.</p>
+            <a href="categoriesquiz/historyquiz.html">
+                <button>Start Quiz</button>
+            </a>
+        </div>
+        <div class="category-card">
+            <img src="images/entertainment.jpg" alt="Entertainment & Pop Culture" loading="eager">
+            <h3>Entertainment & Pop Culture</h3>
+            <p>Quizzes on movies, music, celebrities, and more.</p>
+          <a href="categoriesquiz/entertainmentquiz.html">
+            <button>Start Quiz</button>
+          </a>
+        </div>
+        <div class="category-card">
+            <img src="images/maths.png" alt="Mathematics & Logic" loading="eager">
+            <h3>Mathematics & Logic</h3>
+            <p>Challenge yourself with math problems and puzzles.</p>
+            <a href="categoriesquiz/mathpuz.html">
+            <button>Start Quiz</button>
+            </a>
+        </div>
+        <div class="category-card">
+            <img src="images/sports.jpg" alt="Sports & Games" loading="eager">
+            <h3>Sports & Games</h3>
+            <p>Quizzes on sports history, rules, and famous athletes.</p>
+          <a href="categoriesquiz/sportsquiz.html">
+            <button>Start Quiz</button>
+          </a>
+        </div>
+        </section>
+<br>
+        <h1>Challenge Yourself</h1>
+        <section class="section-2">
+            <div class="category-card">
+                <img src="images/brain.jpg" alt="Brain Teasers" loading="eager">
+                <h3>Brain Teasers</h3>
+                <p>Puzzles, riddles, and logic challenges to test your wits!</p>
+              <a href="categoriesquiz/brainquiz.html">
+                <button>Start Quiz</button>
+              </a>
+            </div>
+
+            <div class="category-card">
+                <img src="images/mystery.jpg" alt="Mystery and Detective" loading="eager">
+                <h3>Mystery and Detective</h3>
+                <p> Unravel clues and solve thrilling mysteries!</p>
+                <a href="categoriesquiz/mysteryquiz.html">
+                    <button>Start Quiz</button>
+                </a>
+            </div>
+
+            <div class="category-card">
+                <img src="images/memory.jpg" alt="Memory Master" loading="eager">
+                <h3>Memory Master</h3>
+                <p>Recall famous facts, dates, and events with precision!</p>
+               <a href="categoriesquiz/memoryquiz.html">
+                <button>Start Quiz</button>
+               </a>
+            </div>
+        </section>
+<br>
+        <h1>Fun and Random</h1>
+        <section class="section-3">
+            <div class="category-card">
+                <img src="images/around.jpg" alt="Around the World" loading="eager">
+                <h3>Around the World</h3>
+                <p>Geography, cultures, and travel trivia!</p>
+                <a href="categoriesquiz/worldquiz.html">
+                    <button>Start Quiz</button>
+                </a>
+            </div>
+
+            <div class="category-card">
+                <img src="images/music.jpg" alt="Music Mania" loading="eager">
+                <h3>Music Mania</h3>
+                <p> Guess lyrics, artists, and legendary songs!</p>
+                <a href="categoriesquiz/musicquiz.html">
+                    <button>Start Quiz</button>
+                </a>
+            </div>
+
+            <div class="category-card">
+                <img src="images/meme.jpg" alt="Meme & Internet Culture" loading="eager">
+                <h3>Meme & Internet Culture</h3>
+                <p>If you live online, you’ll ace this!</p>
+               <a href="categoriesquiz/memequiz.html">
+                <button>Start Quiz</button>
+               </a>
+            </div>
+        </section>
+    </section>
+</main>
+  <br>  
+    <!--footer-->
+    <footer>
+        <div class="footer-container">    
+<div class="sub-panel  quick-links">
+    <a href="home.html">Home</a>
+    <a href="categories.html">Categories</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="quizz.html">Practice Quizzes</a>
+    <a href="about.html">About Us</a>
+    </div>
+<div class="sub-panel">
+    <p>Blog</p>
+    <p>Leagal & Policies</p>
+    <p>Privacy Policy</p>
+    <p>Terms & Conditions</p>
+    <p>Disclaimer</p>
+</div>
+<div class="sub-panel info">
+    <a href="contact.html">Contact Us</a>
+    <p><i class="fa fa-envelope"></i> Email: quizwhiz@gmail.com</p>
+    <p><i class="fa-solid fa-phone"></i> Phone: +123 456 7890</p>
+    <P><i class="fa-solid fa-location-dot"></i> Location: New Panvel, Navi mumbai, India</P>
+</div>
+</div>
+<div class="icons">
+    <p>Follow Us</p>
+    <a href="https://www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://www.twitter.com"><i class="fa-brands fa-twitter"></i></a>
+    <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin"></i></a>
+</div>
+
+
+    <div class="copyright">
+        © 2025 Quiz Whiz. All rights reserved.
+    </div>
+    
+    </footer>
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = "block";
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+        }
+
+         // Close modal when clicking outside of it
+         window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+            }
+
+            function validateSignUpForm() {
+      // Get form field values
+      let username = document.getElementById("username").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value;
+      let confirmPassword = document.getElementById("confirm_password").value;
+      
+      // Validate username
+      if (username === "") {
+        alert("Username is required.");
+        return false;
+      }
+      
+      // Validate email using a regular expression pattern
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email === "" || !emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+      
+      // Validate password length
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+      
+      // Check if password and confirm password match
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return false;
+      }
+      
+      // All validations passed
+      return true;
+    }
+  
+
+
+function validateForm() {
+  let agreeCheckbox = document.getElementById("agree");
+
+  if (!agreeCheckbox.checked) {
+    alert("You must agree to the terms and conditions to proceed.");
+    return false;
+  }
+
+  return true;
+
+}
+     
+
+function validateLoginForm() {
+    let userInput = document.getElementById("userInput").value.trim();
+      let password = document.getElementById("password").value;
+
+      // Email pattern
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Validate input (must be an email OR at least 3-character username)
+      if (!(emailPattern.test(userInput) || userInput.length >= 3)) {
+        alert("Please enter a valid email or a username (at least 3 characters).");
+        return false;
+      }
+
+      // Validate password length
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+
+      return true;
+    }
+
+  
+         
+    </script>
+</body>
+</html>

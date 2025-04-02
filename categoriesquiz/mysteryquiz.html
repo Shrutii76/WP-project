@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Whiz</title>
+    <link rel="stylesheet" href="qnstyle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"/>
+   
+</head>
+<body>
+    <div class="quiz-container">
+        <header class="quiz-header">
+            <h2 class="quiz-title">QUIZ WHIZ</h2>
+            <div class="quiz-timer">
+                <span class="material-symbols-rounded">timer</span>
+                <p class="time-duration">15s</p>
+            </div>
+        </header>
+        
+        <div class="quiz-content">
+            <h1 class="question-text"></h1>
+            <ul class="answer-options"></ul>
+        </div>
+        
+        <div class="quiz-footer">
+            <p class="question-status"></p>
+            <button class="next-question-btn">Next <span class="material-symbols-rounded"> arrow_right_alt</span></button>
+        </div>
+
+        <div class="result-container">
+            <h2>Quiz Completed!</h2>
+            <img src="https://www.shutterstock.com/image-vector/exploding-party-popper-confetti-bright-600nw-1292838640.jpg" class="result-img">
+            <p class="final-score"></p>
+            <button class="restart-btn">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+    // Classic Mystery Puzzles
+    {
+        question: "A man was found murdered on a Sunday morning. His wife said she was sleeping, the cook was cooking breakfast, the gardener was picking vegetables, the maid was getting the mail, and the butler was cleaning. Who is the murderer?",
+        options: ["Wife", "Cook", "Maid", "Butler"],
+        answer: "Maid"
+    },
+    {
+        question: "A detective enters a crime scene where a man is hanging from the ceiling, with nothing but a puddle of water beneath him. How did he die?",
+        options: ["He climbed a chair", "He used an ice block", "He was pulled up", "He jumped"],
+        answer: "He used an ice block"
+    },
+    {
+        question: "A woman was poisoned at a restaurant, yet all other diners who ate the same meal were fine. How was she poisoned?",
+        options: ["It was in her water", "Her plate was contaminated", "She had an allergy", "The waiter poisoned her"],
+        answer: "It was in her water"
+    },
+
+    // Logical Detective Riddles
+    {
+        question: "A man was murdered in his office. The suspects are Peter, Julie, Jason, and Mark. The only clue is a calendar with the numbers 6, 4, 9, 10, and 11 circled. Who is the killer?",
+        options: ["Peter", "Julie", "Jason", "Mark"],
+        answer: "Jason"
+    },
+    {
+        question: "A man is found dead with a gun in his hand and a tape recorder next to him. When the detective presses play, the tape says, 'I can’t go on anymore' followed by a gunshot. What is suspicious about this?",
+        options: ["The tape was rewound", "The gun had no bullets", "There were two gunshots", "The tape was erased"],
+        answer: "The tape was rewound"
+    },
+
+    // Trick Detective Questions
+    {
+        question: "A woman shot her husband. Then she held him underwater for five minutes. Finally, she hung him. But five minutes later, they went out together and had a wonderful dinner. How?",
+        options: ["It was a movie scene", "He survived", "She was imagining", "He was a ghost"],
+        answer: "It was a movie scene"
+    },
+    {
+        question: "A crime happened on a snowy night. The detective saw footprints leading to the house but none leaving. What happened?",
+        options: ["The criminal never left", "He left through the back", "He walked backward", "He was carried out"],
+        answer: "He walked backward"
+    },
+
+    // Murder Mystery Clues
+    {
+        question: "A man is pushed off a building. He falls to his death, but the detective immediately knows it wasn’t suicide. Why?",
+        options: ["There were two voices", "The windows were locked", "No fingerprints on the railing", "The body landed too far"],
+        answer: "No fingerprints on the railing"
+    },
+    {
+        question: "A man called the police saying his wife had died. He said he was sleeping, woke up, and found her dead in the bed. But the detective arrested him. Why?",
+        options: ["The bed was made", "The floor was wet", "He knew she was dead without checking", "The phone was broken"],
+        answer: "He knew she was dead without checking"
+    },
+    {
+        question: "A man ran out of a restaurant without paying, but the police didn’t arrest him. Why?",
+        options: ["He was invisible", "He paid in advance", "He was the owner", "It was a prank"],
+        answer: "He was the owner"
+    }
+];
+
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let timer; // Variable to store the timer
+    let timeLeft = 15; // 15 seconds for each question
+
+    const questionText = document.querySelector(".question-text");
+    const answerOptions = document.querySelector(".answer-options");
+    const questionStatus = document.querySelector(".question-status");
+    const nextButton = document.querySelector(".next-question-btn");
+    const resultContainer = document.querySelector(".result-container");
+    const finalScore = document.querySelector(".final-score");
+    const timerDisplay = document.querySelector(".time-duration");
+
+    function loadQuestion() {
+        clearInterval(timer); // Stop previous timer
+        timeLeft = 15; // Reset timer
+        timerDisplay.textContent = `${timeLeft}s`;
+        startTimer(); // Start new timer
+
+        let currentQuestion = questions[currentQuestionIndex];
+        questionText.textContent = "💡 " + currentQuestion.question;
+        answerOptions.innerHTML = "";
+        currentQuestion.options.forEach(option => {
+            let li = document.createElement("li");
+            li.classList.add("answer-option");
+            li.textContent = option;
+            li.addEventListener("click", () => checkAnswer(li, currentQuestion.answer));
+            answerOptions.appendChild(li);
+        });
+        questionStatus.innerHTML = `<b>${currentQuestionIndex + 1}</b> of <b>${questions.length}</b> Questions`;
+    }
+
+    function startTimer() {
+        timer = setInterval(() => {
+            timeLeft--;
+            timerDisplay.textContent = `${timeLeft}s`;
+
+            if (timeLeft === 0) {
+                clearInterval(timer);
+                nextQuestion(); // Auto move to the next question
+            }
+        }, 1000);
+    }
+
+    function checkAnswer(selectedOption, correctAnswer) {
+        clearInterval(timer); // Stop timer when an answer is selected
+        let isCorrect = selectedOption.textContent === correctAnswer;
+        selectedOption.classList.add(isCorrect ? "correct" : "incorrect");
+        if (isCorrect) score++;
+    }
+
+   
+    function nextQuestion() {
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+    } else {
+        // Hide the quiz content and footer
+        document.querySelector(".quiz-content").style.display = "none";
+        document.querySelector(".quiz-footer").style.display = "none";
+
+        // Hide the timer
+        document.querySelector(".quiz-timer").style.display = "none"; // 👈 Add this line
+
+        // Show the result
+        resultContainer.style.display = "block";
+        finalScore.textContent = `Your Score: ${score} / ${questions.length}`;
+    }
+}
+
+
+    nextButton.addEventListener("click", () => {
+        clearInterval(timer); // Stop timer when clicking "Next"
+        nextQuestion();
+    });
+
+    document.querySelector(".restart-btn").addEventListener("click", () => location.reload());
+
+    loadQuestion();
+</script>
+</body>
+</html>

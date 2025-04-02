@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Whiz</title>
+    <link rel="stylesheet" href="qnstyle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"/>
+   
+</head>
+<body>
+    <div class="quiz-container">
+        <header class="quiz-header">
+            <h2 class="quiz-title">QUIZ WHIZ</h2>
+            <div class="quiz-timer">
+                <span class="material-symbols-rounded">timer</span>
+                <p class="time-duration">15s</p>
+            </div>
+        </header>
+        
+        <div class="quiz-content">
+            <h1 class="question-text"></h1>
+            <ul class="answer-options"></ul>
+        </div>
+        
+        <div class="quiz-footer">
+            <p class="question-status"></p>
+            <button class="next-question-btn">Next <span class="material-symbols-rounded"> arrow_right_alt</span></button>
+        </div>
+
+        <div class="result-container">
+            <h2>Quiz Completed!</h2>
+            <img src="https://www.shutterstock.com/image-vector/exploding-party-popper-confetti-bright-600nw-1292838640.jpg" class="result-img">
+            <p class="final-score"></p>
+            <button class="restart-btn">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+    // Geography & Landmarks
+    {
+        question: "Which country is home to the Eiffel Tower?",
+        options: ["Italy", "France", "Germany", "Spain"],
+        answer: "France"
+    },
+    {
+        question: "Mount Everest, the world’s highest mountain, is located in which two countries?",
+        options: ["China and India", "Nepal and China", "Pakistan and India", "Nepal and Bhutan"],
+        answer: "Nepal and China"
+    },
+    {
+        question: "Which desert is the largest in the world?",
+        options: ["Sahara Desert", "Gobi Desert", "Antarctic Desert", "Kalahari Desert"],
+        answer: "Antarctic Desert"
+    },
+
+    // Culture & Traditions
+    {
+        question: "In which country did the tradition of the 'Oktoberfest' festival originate?",
+        options: ["Austria", "Germany", "Switzerland", "Belgium"],
+        answer: "Germany"
+    },
+    {
+        question: "Sushi is a famous dish from which country?",
+        options: ["China", "Japan", "South Korea", "Thailand"],
+        answer: "Japan"
+    },
+    
+    // Capital Cities
+    {
+        question: "What is the capital city of Australia?",
+        options: ["Sydney", "Melbourne", "Canberra", "Perth"],
+        answer: "Canberra"
+    },
+    {
+        question: "Which city is known as 'The Big Apple'?",
+        options: ["Los Angeles", "Chicago", "New York", "San Francisco"],
+        answer: "New York"
+    },
+
+    // Flags & Symbols
+    {
+        question: "Which country's flag has a red circle on a white background?",
+        options: ["Japan", "South Korea", "Switzerland", "Denmark"],
+        answer: "Japan"
+    },
+    {
+        question: "The Taj Mahal is located in which country?",
+        options: ["Pakistan", "India", "Bangladesh", "Iran"],
+        answer: "India"
+    },
+
+    // Time Zones & Geography Trivia
+    {
+        question: "Which continent has the most countries?",
+        options: ["Asia", "Africa", "Europe", "South America"],
+        answer: "Africa"
+    }
+];
+
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let timer; // Variable to store the timer
+    let timeLeft = 15; // 15 seconds for each question
+
+    const questionText = document.querySelector(".question-text");
+    const answerOptions = document.querySelector(".answer-options");
+    const questionStatus = document.querySelector(".question-status");
+    const nextButton = document.querySelector(".next-question-btn");
+    const resultContainer = document.querySelector(".result-container");
+    const finalScore = document.querySelector(".final-score");
+    const timerDisplay = document.querySelector(".time-duration");
+
+    function loadQuestion() {
+        clearInterval(timer); // Stop previous timer
+        timeLeft = 15; // Reset timer
+        timerDisplay.textContent = `${timeLeft}s`;
+        startTimer(); // Start new timer
+
+        let currentQuestion = questions[currentQuestionIndex];
+        questionText.textContent = "💡 " + currentQuestion.question;
+        answerOptions.innerHTML = "";
+        currentQuestion.options.forEach(option => {
+            let li = document.createElement("li");
+            li.classList.add("answer-option");
+            li.textContent = option;
+            li.addEventListener("click", () => checkAnswer(li, currentQuestion.answer));
+            answerOptions.appendChild(li);
+        });
+        questionStatus.innerHTML = `<b>${currentQuestionIndex + 1}</b> of <b>${questions.length}</b> Questions`;
+    }
+
+    function startTimer() {
+        timer = setInterval(() => {
+            timeLeft--;
+            timerDisplay.textContent = `${timeLeft}s`;
+
+            if (timeLeft === 0) {
+                clearInterval(timer);
+                nextQuestion(); // Auto move to the next question
+            }
+        }, 1000);
+    }
+
+    function checkAnswer(selectedOption, correctAnswer) {
+        clearInterval(timer); // Stop timer when an answer is selected
+        let isCorrect = selectedOption.textContent === correctAnswer;
+        selectedOption.classList.add(isCorrect ? "correct" : "incorrect");
+        if (isCorrect) score++;
+    }
+
+   
+    function nextQuestion() {
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+    } else {
+        // Hide the quiz content and footer
+        document.querySelector(".quiz-content").style.display = "none";
+        document.querySelector(".quiz-footer").style.display = "none";
+
+        // Hide the timer
+        document.querySelector(".quiz-timer").style.display = "none"; // 👈 Add this line
+
+        // Show the result
+        resultContainer.style.display = "block";
+        finalScore.textContent = `Your Score: ${score} / ${questions.length}`;
+    }
+}
+
+
+    nextButton.addEventListener("click", () => {
+        clearInterval(timer); // Stop timer when clicking "Next"
+        nextQuestion();
+    });
+
+    document.querySelector(".restart-btn").addEventListener("click", () => location.reload());
+
+    loadQuestion();
+</script>
+</body>
+</html>

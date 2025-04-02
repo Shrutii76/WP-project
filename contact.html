@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Whiz - Contact Us</title>
+    <style>
+            /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background : rgba(34, 25, 49);; 
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+    header{
+    position: sticky;
+    top: 0px;
+    overflow: hidden;
+    z-index: +1;
+}
+/* Navigation bar */
+nav{
+    background-color:#4B2E6F;
+         padding: 5px 0; 
+         text-align: center; 
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         
+}
+
+.navbar{ 
+             background-color: #44226d;
+              padding: 10px;
+              display: flex;
+             align-items:center;
+            justify-content: space-evenly;
+            
+         
+           
+}
+.move{
+  
+    gap: 2px;
+    display: flex;
+    
+    
+}
+
+ .box1{
+   background-color: white;
+   color: #24123a;
+   border: none;
+   padding: 10px 20px;
+   border-radius: 6px;
+   font-size: 16px;
+   cursor: pointer;
+}
+ 
+.box2{
+    background-color: transparent;
+    color:white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer; 
+    
+
+}
+.box1,.box2{
+    text-decoration: none;
+    display: inline-block;
+}
+.move:hover{
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    background-color: #ccc;
+
+}
+.logo{
+          display: flex;
+             align-items: center;
+             transition: transform 0.3s ease-in-out;
+}
+.logo:hover {
+    transform: scale(1.1); /* Increases size by 10% */
+}
+            
+img{ height: 50px;
+      width:150px; 
+      margin-left: 10px;
+      border-radius: 5px;
+           }
+
+
+.nav a{    
+         text-decoration: none;
+        color: white;
+        font-size: 18px; 
+        font-weight: bold;
+         padding: 10px 15px; 
+        background-color: transparent;
+        border-radius: 5px;
+        display: inline-block; 
+        margin: 0 10px;
+        transition: background-color 0.3s ease-in-out;
+       
+        
+    }
+    .nav a:hover {
+        color: yellow; /* Change text color on hover */
+        background-color: rgba(255, 255, 255, 0.2); /* Slight background effect */
+        border-radius: 5px;
+        animation: hovereffect 0.5s forwards;
+        
+    }
+    
+    @keyframes hoverEffect {
+        0% {
+            color: yellow;
+            transform: translateX(0);
+        }
+        100% {
+            color: orange;
+            transform: translateX(-5px); /* Moves text to the right */
+        }
+    }
+
+button{
+        margin-left: auto;
+                 padding: 5px 10px; 
+                 border-radius: 5px;
+                 background-color: white;
+                  border: 1px solid black; 
+                  cursor: pointer;
+                  height: 40px;
+                  font-weight: bold;
+                  font-family: 'Nunito',sans-serif;
+                  font-size: medium;
+                  transition: 0.3s;
+                 }
+
+
+                                /* Modal Background */
+  .modal-bg {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: +1;
+}
+.mod1{
+    width: 300px;
+}
+
+
+
+.modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+   
+}
+
+
+.modal-box h2{
+    color:#4B2E6F;
+     font-family: Cambria, Georgia, serif;
+      font-size: 24px; 
+      font-style: normal; 
+      font-variant: normal; 
+      font-weight: 700;
+       line-height: 26.4px; 
+}
+.modal-box input[type="text"],input[type="password"],input[type="email"]{
+    width: 90%; 
+    padding: 10px;
+     margin: 10px 0;
+      border: 2px solid gray;
+       border-radius: 5px;
+}
+.modal-box input[type="password"]{
+    margin-bottom: 0px;
+}
+
+.close-btn {
+    cursor: pointer;
+    color: #4B2E6F;
+    float: right;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+.btn {
+    background: #4B2E6F;
+    border: none;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+
+} 
+
+.password{
+    text-decoration: none; 
+    color: #4B2E6F;
+    text-align: end;
+}
+.modal-box a{
+    text-decoration: none;
+    color:#4B2E6F;
+}
+
+.container{
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    text-align: center;
+    height:700px;
+   }
+
+
+ .mod2 h1{
+    margin-bottom: 20px;
+    color:#4B2E6F;
+    font-family: Cambria, Georgia, serif;
+font-size: 30px; 
+font-style: normal; 
+font-variant: normal; 
+font-weight: 700;
+line-height: 26.4px;
+}
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+.container label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+ .container input{
+    width: 95%;
+    padding: 12px;  
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.container button {
+    width: 100%;
+    padding: 12px;
+    background: #4B2E6F;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.container button:hover {
+    background: #311e48;
+}
+.alternative {
+    margin-top: 15px;
+    font-size: 16px;
+}
+.alternative a {
+    color: #4B2E6F;
+    text-decoration: none;
+    
+}
+.alternative a:hover {
+    text-decoration: underline;
+}
+.terms {
+float: left;
+margin-top: 2px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    justify-content: left;
+    margin-bottom: 10px;
+}
+.remember input {
+    width: auto;
+    margin-right: 8px;
+}
+hr {
+border: 1px solid #6e6969;
+margin-bottom: 25px;
+}
+ .modal-bg label,p.terms{
+    color:black;
+ }
+ .modal-box p{
+    color:black;
+ }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: white;
+            color: #3b1970;
+            border: none;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Contact Page Styles */
+        .contact-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background: linear-gradient(145deg, #4B2E6F, #4B2E6F);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(16, 216, 226, 0.1);
+        }
+        
+        
+            .contact-form {
+    flex: 1.5;
+    min-width: 400px;
+    background: rgba(255, 255, 255, 0.05); /* Keep this for transparency */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+        
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #10d8e2;
+        }
+        
+        .contact-detail {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            font-size: 20px;
+            color: #10d8e2;
+            min-width: 24px;
+        }
+        
+        .contact-text {
+            line-height: 1.6;
+        }
+        
+        .social-media {
+            margin-top: 40px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .social-icon:hover {
+            background: #10d8e2;
+            transform: translateY(-5px);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: #e0e0e0;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #10d8e2;
+            box-shadow: 0 0 0 2px rgba(16, 216, 226, 0.3);
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .form-select {
+            display: flex;
+        }
+        
+        .country-code {
+            width: 120px;
+            margin-right: 10px;
+        }
+        
+        .phone-input {
+            flex: 1;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(90deg, #3b1970, #10d8e2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(16, 216, 226, 0.2);
+        }
+        
+        .btn-icon {
+            font-size: 20px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animated {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .contact-form, .contact-info {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="navbar">
+             <div class="logo">
+             <img src="logo design/logo.png" alt="Logo">
+     </div>
+         <div class="nav">
+             <a href="home.html">Home</a>
+                 <a href="categories.html">Categories</a>
+                 <a href="leaderboard.html">Leaderboard</a>
+                 <a href="about.html">About Us</a>
+                 <a href="contact.html">Contact Us</a>
+         </div>
+         <div class="button">
+             <button class="move  box1" onclick="openModal('modal2')">Get started now</button>
+        
+             <button class="move box2" onclick="openModal('modal1')">Log in</button>
+             </div>
+     </div>
+     </nav>
+ </header>
+<main>
+   
+<div class="modal-bg" id="modal1">
+ <div class="modal-box mod1">
+     <span class="close-btn" onclick="closeModal('modal1')"><i class="fa-solid fa-xmark"></i></span>
+     <h2>Login to QUIZ WHIZ</h2>
+     <form action="login.php" method="POST" onsubmit="return validateLoginForm()">
+         <input type="text" required placeholder="Email or Username" name="email"><br>
+         <input type="password" required placeholder="Password" name="password">
+         <p class="password"><a href="password.html">Forgot Password?</a></p>
+         <button class="btn">Log In</button>
+         <p>Not registered? 
+             <a href="#" onclick="switchModal('modal1', 'modal2')">Create an account</a>
+         </p>
+     </form>
+ </div>
+</div>
+
+
+<div class="modal-bg" id="modal2">
+ <div class="modal-box mod2">
+     <span class="close-btn" onclick="closeModal('modal2')"><i class="fa-solid fa-xmark"></i></span>
+     <h1>Sign Up</h1>
+     <p>Please fill in this form to create an account.</p>
+     <hr>
+     <form action="register.php" method="POST" onsubmit="return validateForm() && validateSignUpForm()">
+         <div class="form-group">
+             <input type="text" id="name" placeholder="Name" name="fullname" minlength="3" required>
+         </div>
+         <div class="form-group">
+             <input type="text" id="username" placeholder="Username" name="username" required>
+         </div>
+         <div class="form-group">
+             <input type="email" id="email" placeholder="Email address" name="email" required>
+         </div>
+         <div class="form-group">
+             <input type="password" id="password" placeholder="Password" name="password" required>
+         </div>
+         <div class="form-group">
+             <input type="password" id="confirm_password" placeholder="Confirm Password" name="confirm_password" required>
+         </div>
+         <div class="remember">
+             <input type="checkbox" name="remember" id="agree">
+             <label for="agree">Remember me</label>
+         </div>
+         <p class="terms">By creating an account, you agree to our <a href="#">Terms & Privacy</a>.</p>
+         <button type="submit" class="btn">Create Account</button>
+     </form>
+     <div class="alternative">
+         <p>Already have an account? 
+             <a href="#" onclick="switchModal('modal2', 'modal1')">Log in</a>
+         </p>
+     </div>
+ </div>
+</div> 
+
+    <!-- Contact Section -->
+    <div class="contact-container">
+        <!-- Contact Info Box -->
+        <div class="contact-info animated delay-1">
+            <h2 class="section-title">Get in touch</h2>
+            
+            <div class="contact-detail">
+                <div class="contact-icon">📍</div>
+                <div class="contact-text">
+                    Dr. K. M. Vasudevan Pillai Campus Plot No. 10,
+                    Sector 16, New Panvel Navi Mumbai, Mumbai-
+                    410 206, Maharashtra, India
+                </div>
+            </div>
+            
+            <div class="contact-detail">
+                <div class="contact-icon">✉️</div>
+                <div class="contact-text">
+                    quizwhiz@gmail.com
+                </div>
+            </div>
+            
+            <div class="contact-detail">
+                <div class="contact-icon">📞</div>
+                <div class="contact-text">
+                    Mon-Fri from 8am to 5pm
+                    <br>(+995) 555-55-55-55
+                </div>
+            </div>
+            
+            <div class="social-media">
+                <h3>Social media</h3>
+                <div class="social-icons">
+                    <div class="social-icon">f</div>
+                    <div class="social-icon">in</div>
+                    <div class="social-icon">ig</div>
+                    <div class="social-icon">tw</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="contact-form animated delay-2">
+            <form  action="contact.php" method="POST" id="contactForm">
+                <div class="form-group animated delay-1">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" placeholder="Your name" name="name" required>
+                </div>
+                
+                <div class="form-group animated delay-2">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" placeholder="Your email address" required>
+                </div>
+                
+                <div class="form-group animated delay-3">
+                    <label class="form-label">Phone Number</label>
+                    <div class="form-select">
+                        <select class="form-control country-code">
+                            <option value="+995">(+995)</option>
+                            <option value="+1">USA (+1)</option>
+                            <option value="+44">UK (+44)</option>
+                            <option value="+91">IN (+91)</option>
+                            <!-- Add more country codes as needed -->
+                        </select>
+                        <input type="tel"  name="phone" class="form-control phone-input" placeholder="Your phone number">
+                    </div>
+                </div>
+                
+                <div class="form-group animated delay-4">
+                    <label class="form-label">Message</label>
+                    <textarea class="form-control" placeholder="Tell us what we can help you with" rows="5" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn animated delay-4">
+                    <span class="btn-icon">📨</span>
+                    <span>Send Message</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Form animation and validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const inputs = form.querySelectorAll('.form-control');
+            
+            // Add focus animations to inputs
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (this.value === '') {
+                        this.parentElement.classList.remove('focused');
+                    }
+                });
+            });
+            
+            // Form submission with validation
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate all required fields
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    if (input.hasAttribute('required') && !input.value.trim()) {
+                        isValid = false;
+                        input.classList.add('invalid');
+                    } else {
+                        input.classList.remove('invalid');
+                    }
+                });
+                
+                if (isValid) {
+                    // Simulate form submission
+                    const submitBtn = document.querySelector('.submit-btn');
+                    submitBtn.innerHTML = 'Sending...';
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = '<span class="btn-icon">✓</span><span>Message Sent!</span>';
+                        submitBtn.style.background = '#28a745';
+                        
+                        // Reset form after success
+                        setTimeout(() => {
+                            form.reset();
+                            submitBtn.innerHTML = '<span class="btn-icon">📨</span><span>Send Message</span>';
+                            submitBtn.style.background = 'linear-gradient(90deg, #3b1970, #10d8e2)';
+                        }, 3000);
+                    }, 1500);
+                }
+            });
+        });
+
+        function openModal(id) {
+    document.getElementById(id).style.display = "block";
+}
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+}
+
+ // Close modal when clicking outside of it
+ window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+    }
+    }
+    function validateSignUpForm() {
+      // Get form field values
+      let username = document.getElementById("username").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value;
+      let confirmPassword = document.getElementById("confirm_password").value;
+      
+      // Validate username
+      if (username === "") {
+        alert("Username is required.");
+        return false;
+      }
+      
+      // Validate email using a regular expression pattern
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email === "" || !emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+      
+      // Validate password length
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+      
+      // Check if password and confirm password match
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return false;
+      }
+      
+      // All validations passed
+      return true;
+    }
+  
+
+
+function validateForm() {
+  let agreeCheckbox = document.getElementById("agree");
+
+  if (!agreeCheckbox.checked) {
+    alert("You must agree to the terms and conditions to proceed.");
+    return false;
+  }
+
+  return true;
+
+}
+     
+
+function validateLoginForm() {
+    let userInput = document.getElementById("userInput").value.trim();
+      let password = document.getElementById("password").value;
+
+      // Email pattern
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Validate input (must be an email OR at least 3-character username)
+      if (!(emailPattern.test(userInput) || userInput.length >= 3)) {
+        alert("Please enter a valid email or a username (at least 3 characters).");
+        return false;
+      }
+
+      // Validate password length
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+
+      return true;
+    }
+    
+    </script>
+    </body>
+    </html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home page</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+    <header>
+        <!-- Navigation -->
+   
+<a href="navbar.php"></a>
+        <nav>
+           <div class="navbar">
+                <div class="logo">
+                <img src="logo design/logo.png" alt="Logo" loading="eager">
+        </div>
+            <div class="nav">
+                <a href="home.html">Home</a>
+                    <a href="categories.html">Categories</a>
+                    <a href="leaderboard.html">Leaderboard</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="button">
+           
+                <button class="move  box1" onclick="openModal('modal2')">Get started now</button>
+           
+                        <button class="move box2" onclick="openModal('modal1')">Log in</button>
+                  
+                </div>
+        </div>
+        </nav>
+    </header>
+
+    
+    <main>
+      <!-- Login Modal -->
+<div class="modal-bg" id="modal1">
+    <div class="modal-box mod1">
+        <span class="close-btn" onclick="closeModal('modal1')"><i class="fa-solid fa-xmark"></i></span>
+        <h2>Login to QUIZ WHIZ</h2>
+        <form action="login.php" method="POST" onsubmit="return validateLoginForm()" id="loginForm">
+            <input type="text" required placeholder="Email or Username" name="email"><br>
+            <input type="password" required placeholder="Password" name="password">
+            <p class="password"><a href="password.html">Forgot Password?</a></p>
+            <button class="btn">Log In</button>
+            <p>Not registered? 
+                <a href="#" onclick="switchModal('modal1', 'modal2')">Create an account</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+<!-- Signup Modal -->
+<div class="modal-bg" id="modal2">
+    <div class="modal-box mod2">
+        <span class="close-btn" onclick="closeModal('modal2')"><i class="fa-solid fa-xmark"></i></span>
+        <h1>Sign Up</h1>
+        <p>Please fill in this form to create an account.</p>
+        <hr>
+        <form action="register.php" method="POST" onsubmit="return validateForm() && validateSignUpForm()" id="signupForm">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Name" name="fullname" minlength="3" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="username" placeholder="Username" name="username" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email address" name="email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="confirm_password" placeholder="Confirm Password" name="confirm_password" required>
+            </div>
+            <div class="remember">
+                <input type="checkbox" name="remember" id="agree">
+                <label for="agree">Remember me</label>
+            </div>
+            <p class="terms">By creating an account, you agree to our <a href="#">Terms & Privacy</a>.</p>
+            <button type="submit" class="btn">Create Account</button>
+        </form>
+        <div class="alternative">
+            <p>Already have an account? 
+                <a href="#" onclick="switchModal('modal2', 'modal1')">Log in</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="successPopup" class="popup">
+    <div class="popup-content">
+        <p>Signup Successful!</p>
+    </div>
+</div>
+
+
+        <!-- Hero section -->
+        <section>
+     <div class="hero">
+      <h1>Welcome to the Quiz Whiz!</h1>
+        <p>Test your knowledge with fun and challenging questions!</p>
+        <p>"Challenge yourself, beat the clock, and prove you're the quiz master!" </p>
+        <a href="categories.html" class="butn">Play Now</a>
+    </div>
+    </section>
+
+    <!-- Featured Quizzes Section -->
+    <section class="featured">
+        <h2>Trending Quizzes</h2>
+        <div class="quiz-container">
+            <div class="quiz-card">
+                <img src="images/general knowledge.jpg" alt="General Knowledge" loading="eager">
+                <h3>General Knowledge</h3>
+                <p>Think you know it all?Try this!</p>
+                <a href="categoriesquiz/gkquiz.html" class="butn">Play Now</a>
+            </div>
+            <div class="quiz-card">
+                <img src="images/maths.png" alt="Mathematics & Logic" loading="eager">
+                <h3>Math Puzzles</h3>
+                <p>Put your math skills to the test!</p>
+                <a href="categoriesquiz/mathpuz.html" class="butn">Play Now</a>
+            </div>
+            <div class="quiz-card">
+                <img src="images/programming.jpg" alt="Programming challenge" loading="eager">
+                <h3>Programming Challenge</h3>
+                <p>Can you solve these coding problems?</p>
+                <a href="categoriesquiz/programming.html" class="butn">Play Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!--How it works section -->
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step"><strong>1.</strong> Choose a quiz category</div>
+            <div class="step"><strong>2.</strong> Answer the questions</div>
+            <div class="step"><strong>3.</strong> Get your results</div>
+
+        </div> 
+        <!-- <p>This is how the  QUIZ WHIZ works! Watch before you start.</p>
+        <video width="400" height="300" controls><source src="video/demo.mp4"> Your browser does not support the video tag.</video> -->
+</section>
+
+<!--user testimonials-->
+<section class="testimonial">
+    <h2>What our Users say?</h2>
+    <div class="testimonial-container">
+
+    <div class="testimonial-card">
+        <div class="testimonial-text">
+            I Love the variety available on Quiz Whiz. It's a great way to Challenge myself and learn new things!
+            <strong>Highly recommended!</strong>
+            </div>
+            <div class="user-info">
+                <img src="images/avatar1.png" alt="User Avatar">
+                <div class="user-details">
+                    <div class="name">Pranali Date</div>
+                    <div class="role">Educator</div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="testimonial-card">
+        <div class="testimonial-text">
+            I've always been a fan of trivia games.and Quiz Whiz is one of the best I've come across. The questions are challenging!
+            <strong>User-friendly</strong>
+        </div>
+        <div class="user-info">
+            <img src="images/avatar2.png" alt="User Avatar" loading="eager">
+            <div class="user-details">
+                <div class="name">Samruddhi Patil</div>
+                <div class="role">Regular player</div>
+            </div>
+     </div>
+</div>
+
+<div class="testimonial-card">
+    <div class="testimonial-text">
+        I love the variety available on Quiz Whiz.It's a great way to challenge myself and learn new things!
+         <strong>Innovative</strong>
+    </div>
+    <div class="user-info">
+        <img src="images/avatar3.png" alt="User Avatar" loading="eager">
+        <div class="user-details">
+            <div class="name">Avinash Sharma</div>
+            <div class="role">Top-scorer</div>
+        </div>
+ </div>
+</div>
+
+<div class="testimonial-card">
+    <div class="testimonial-text">
+       A Fantastic quiz platform with a smooth interface and a variety of topics. It's both addictive and educational! 
+         <strong>Engaging!</strong>
+    </div>
+    <div class="user-info">
+        <img src="images/avatar4.png" alt="User Avatar" loading="eager">
+        <div class="user-details">
+            <div class="name">Purva Badekar</div>
+            <div class="role">Beginner</div>
+        </div>
+ </div>
+</div>
+
+<div class="testimonial-card">
+    <div class="testimonial-text">
+       An excellent quiz website that makes learning exciting. The content diverse ,the design is inuitive and the challenge level is just right!
+             <strong>Impressive!</strong>
+    </div>
+    <div class="user-info">
+        <img src="images/avatar5.png" alt="User Avatar" loading="eager">
+        <div class="user-details">
+            <div class="name">john doe</div>
+            <div class="role">Premium-user</div>
+        </div>
+ </div>
+</div>
+
+
+<!-- duplicate the cards for scrolling -->
+
+<div class="testimonial-card">
+    <div class="testimonial-text">
+        I Love the variety available on Quiz Whiz. It's a great way to Challenge myself and learn new things!
+        <strong>Highly recommended!</strong>
+        </div>
+        <div class="user-info">
+            <img src="images/avatar1.png" alt="User Avatar" loading="eager">
+            <div class="user-details">
+                <div class="name">Pranali Date</div>
+                <div class="role">Educator</div>
+            </div>
+        </div>
+    </div>
+    
+        <div class="testimonial-card">
+    <div class="testimonial-text">
+        I've always been a fan of trivia games.and Quiz Whiz is one of the best I've come across. The questions are challenging!
+        <strong>User-friendly</strong>
+    </div>
+    <div class="user-info">
+        <img src="images/avatar2.png" alt="User Avatar" loading="eager">
+        <div class="user-details">
+            <div class="name">Samruddhi Patil</div>
+            <div class="role">Regular player</div>
+        </div>
+ </div>
+</div>
+
+<div class="testimonial-card">
+<div class="testimonial-text">
+    I love the variety available on Quiz Whiz.It's a great way to challenge myself and learn new things!
+     <strong>Innovative</strong>
+</div>
+<div class="user-info">
+    <img src="images/avatar3.png" alt="User Avatar" loading="eager">
+    <div class="user-details">
+        <div class="name">Avinash Sharma</div>
+        <div class="role">Top-scorer</div>
+    </div>
+</div>
+</div>
+
+<div class="testimonial-card">
+<div class="testimonial-text">
+   A Fantastic quiz platform with a smooth interface and a variety of topics. It's both addictive and educational! 
+     <strong>Engaging!</strong>
+</div>
+<div class="user-info">
+    <img src="images/avatar4.png" alt="User Avatar" loading="eager">
+    <div class="user-details">
+        <div class="name">Purva Badekar</div>
+        <div class="role">Beginner</div>
+    </div>
+</div>
+</div>
+
+<div class="testimonial-card">
+<div class="testimonial-text">
+   An excellent quiz website that makes learning exciting. The content diverse ,the design is inuitive and the challenge level is just right!
+         <strong>Impressive!</strong>
+</div>
+<div class="user-info">
+    <img src="images/avatar5.png" alt="User Avatar" loading="eager">
+    <div class="user-details">
+        <div class="name">john doe</div>
+        <div class="role">Premium-user</div>
+    </div>
+</div>
+</div>
+</div>
+    </section>
+
+
+    <!-- Call to Action -->
+     <section class="cta">
+        <h2>Ready to put your knowledge to the test?</h2>
+        <a href="home.html" class="butn">Take Your First Quiz Now!</a>
+     </section>
+
+    </main>
+
+
+<!--footer-->
+    <footer>
+        <div class="footer-container">    
+      <div class="sub-panel  quick-links">
+    <a href="home.html">Home</a>
+    <a href="categories.html">Categories</a>
+    <a href="badges.html">Badges</a>
+    <a href="create.html">Create</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="quizz.html">Practice Quizzes</a>
+    <a href="about.html">About Us</a>
+    </div>
+<div class="sub-panel">
+    <p>Blog</p>
+    <p>Leagal & Policies</p>
+    <p>Privacy Policy</p>
+    <p>Terms & Conditions</p>
+    <p>Disclaimer</p>
+</div>
+<div class="sub-panel info">
+    <a href="contact.html">Contact Us</a>
+    <p><i class="fa fa-envelope"></i> Email: quizwhiz@gmail.com</p>
+    <p><i class="fa-solid fa-phone"></i> Phone: +123 456 7890</p>
+    <P><i class="fa-solid fa-location-dot"></i> Location: New Panvel, Navi mumbai, India</P>
+</div>
+</div>
+<div class="icons">
+    <p>Follow Us</p>
+    <a href="https://www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://www.twitter.com"><i class="fa-brands fa-twitter"></i></a>
+    <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin"></i></a>
+</div>
+
+
+    <div class="copyright">
+        © 2025 Quiz Whiz. All rights reserved.
+    </div>
+    
+    </footer>
+    <script>
+
+function openModal(id) {
+            document.getElementById(id).style.display = "block";
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+        }
+
+        function switchModal(currentModal, targetModal) {
+    closeModal(currentModal); // Close current modal
+    openModal(targetModal);   // Open target modal
+}
+
+         // Close modal when clicking outside of it
+         window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+            }
+            
+    function validateSignUpForm() {
+      // Get form field values
+      let username = document.getElementById("username").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value;
+      let confirmPassword = document.getElementById("confirm_password").value;
+      
+      // Validate username
+      if (username === "") {
+        alert("Username is required.");
+        return false;
+      }
+      
+      // Validate email using a regular expression pattern
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email === "" || !emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+      
+      // Validate password length
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+      
+      // Check if password and confirm password match
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return false;
+      }
+      
+      // All validations passed
+      return true;
+    }
+  
+
+
+function validateForm() {
+  let agreeCheckbox = document.getElementById("agree");
+
+  if (!agreeCheckbox.checked) {
+    alert("You must agree to the terms and conditions to proceed.");
+    return false;
+  }
+
+  return true;
+
+  console.log("validateForm executed");
+  return true; // Change to false if validation fails
+
+}
+     
+
+function validateLoginForm() {
+    let userInput = document.getElementById("userInput").value.trim();
+      let password = document.getElementById("password").value;
+
+      // Email pattern
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Validate input (must be an email OR at least 3-character username)
+      if (!(emailPattern.test(userInput) || userInput.length >= 3)) {
+        alert("Please enter a valid email or a username (at least 3 characters).");
+        return false;
+      }
+
+      // Validate password length
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+
+      return true;
+
+
+      console.log("validateSignUpForm executed");
+    return true; // Change to false if validation fails
+    }
+
+
+    $(document).ready(function() {
+            $('#signupForm').submit(function(event) {
+                event.preventDefault(); // Prevent normal form submission
+                
+                $.ajax({
+                    url: 'register.php',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    dataType: 'json', // Expect JSON response
+                    success: function(response) {
+                        if (response.status === "success") {
+                            $('#signupMessage').html('<span style="color: green;">' + response.message + '</span>');
+                            $('#signupForm')[0].reset();
+                            
+                            // Show success popup
+                            $('#successPopup').fadeIn();
+                            
+                            // Close modal and hide popup after 2 seconds
+                            setTimeout(function() {
+                                $('#successPopup').fadeOut();
+                                closeModal(); // Close signup modal
+                            }, 2000);
+                        } else {
+                            $('#signupMessage').html('<span style="color: red;">' + response.message + '</span>');
+                        }
+                    },
+                    error: function() {
+                        $('#signupMessage').html('<span style="color: red;">Error processing request</span>');
+                    }
+                });
+            });
+        });
+
+
+    
+  
+    </script>
+
+</body>
+</html>

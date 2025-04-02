@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Whiz</title>
+    <link rel="stylesheet" href="qnstyle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"/>
+   
+</head>
+<body>
+    <div class="quiz-container">
+        <header class="quiz-header">
+            <h2 class="quiz-title">QUIZ WHIZ</h2>
+            <div class="quiz-timer">
+                <span class="material-symbols-rounded">timer</span>
+                <p class="time-duration">15s</p>
+            </div>
+        </header>
+        
+        <div class="quiz-content">
+            <h1 class="question-text"></h1>
+            <ul class="answer-options"></ul>
+        </div>
+        
+        <div class="quiz-footer">
+            <p class="question-status"></p>
+            <button class="next-question-btn">Next <span class="material-symbols-rounded"> arrow_right_alt</span></button>
+        </div>
+
+        <div class="result-container">
+            <h2>Quiz Completed!</h2>
+            <img src="https://www.shutterstock.com/image-vector/exploding-party-popper-confetti-bright-600nw-1292838640.jpg" class="result-img">
+            <p class="final-score"></p>
+            <button class="restart-btn">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script>
+      const questions = [
+    // Logical Puzzles
+    {
+        question: "I speak without a mouth and hear without ears. I have nobody, but I come alive with the wind. What am I?",
+        options: ["A ghost", "An echo", "A shadow", "A thought"],
+        answer: "An echo"
+    },
+    {
+        question: "The more of me you take, the more you leave behind. What am I?",
+        options: ["Time", "Footsteps", "Memories", "Breath"],
+        answer: "Footsteps"
+    },
+    {
+        question: "What has to be broken before you can use it?",
+        options: ["A lock", "A secret", "An egg", "A rule"],
+        answer: "An egg"
+    },
+
+    // Math Puzzles
+    {
+        question: "A farmer has 17 sheep, and all but 9 run away. How many are left?",
+        options: ["0", "8", "9", "17"],
+        answer: "9"
+    },
+    {
+        question: "I am a three-digit number. My tens digit is five more than my ones digit, and my hundreds digit is eight less than my tens digit. What number am I?",
+        options: ["194", "153", "105", "285"],
+        answer: "194"
+    },
+    {
+        question: "If you multiply me by any number, the answer will always be the same. What number am I?",
+        options: ["1", "10", "0", "100"],
+        answer: "0"
+    },
+
+    // Lateral Thinking
+    {
+        question: "A man stands on one side of a river, his dog on the other. The man calls his dog, who immediately crosses the river without getting wet or using a bridge. How?",
+        options: ["The river was frozen", "The dog jumped", "There was a hidden bridge", "It was a small puddle"],
+        answer: "The river was frozen"
+    },
+    {
+        question: "What comes once in a minute, twice in a moment, but never in a thousand years?",
+        options: ["The letter 'M'", "Time", "A shadow", "A second"],
+        answer: "The letter 'M'"
+    },
+
+    // Tricky Wordplay
+    {
+        question: "What has hands but can’t clap?",
+        options: ["A doll", "A clock", "A robot", "A statue"],
+        answer: "A clock"
+    },
+    {
+        question: "The more you take, the bigger I get. What am I?",
+        options: ["A hole", "A secret", "A mystery", "A balloon"],
+        answer: "A hole"
+    }
+];
+
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let timer; // Variable to store the timer
+    let timeLeft = 15; // 15 seconds for each question
+
+    const questionText = document.querySelector(".question-text");
+    const answerOptions = document.querySelector(".answer-options");
+    const questionStatus = document.querySelector(".question-status");
+    const nextButton = document.querySelector(".next-question-btn");
+    const resultContainer = document.querySelector(".result-container");
+    const finalScore = document.querySelector(".final-score");
+    const timerDisplay = document.querySelector(".time-duration");
+
+    function loadQuestion() {
+        clearInterval(timer); // Stop previous timer
+        timeLeft = 15; // Reset timer
+        timerDisplay.textContent = `${timeLeft}s`;
+        startTimer(); // Start new timer
+
+        let currentQuestion = questions[currentQuestionIndex];
+        questionText.textContent = "💡 " + currentQuestion.question;
+        answerOptions.innerHTML = "";
+        currentQuestion.options.forEach(option => {
+            let li = document.createElement("li");
+            li.classList.add("answer-option");
+            li.textContent = option;
+            li.addEventListener("click", () => checkAnswer(li, currentQuestion.answer));
+            answerOptions.appendChild(li);
+        });
+        questionStatus.innerHTML = `<b>${currentQuestionIndex + 1}</b> of <b>${questions.length}</b> Questions`;
+    }
+
+    function startTimer() {
+        timer = setInterval(() => {
+            timeLeft--;
+            timerDisplay.textContent = `${timeLeft}s`;
+
+            if (timeLeft === 0) {
+                clearInterval(timer);
+                nextQuestion(); // Auto move to the next question
+            }
+        }, 1000);
+    }
+
+    function checkAnswer(selectedOption, correctAnswer) {
+        clearInterval(timer); // Stop timer when an answer is selected
+        let isCorrect = selectedOption.textContent === correctAnswer;
+        selectedOption.classList.add(isCorrect ? "correct" : "incorrect");
+        if (isCorrect) score++;
+    }
+
+   
+    function nextQuestion() {
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+    } else {
+        // Hide the quiz content and footer
+        document.querySelector(".quiz-content").style.display = "none";
+        document.querySelector(".quiz-footer").style.display = "none";
+
+        // Hide the timer
+        document.querySelector(".quiz-timer").style.display = "none"; // 👈 Add this line
+
+        // Show the result
+        resultContainer.style.display = "block";
+        finalScore.textContent = `Your Score: ${score} / ${questions.length}`;
+    }
+}
+
+
+    nextButton.addEventListener("click", () => {
+        clearInterval(timer); // Stop timer when clicking "Next"
+        nextQuestion();
+    });
+
+    document.querySelector(".restart-btn").addEventListener("click", () => location.reload());
+
+    loadQuestion();
+</script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    <link rel="stylesheet" href="aboutstyle.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <!---navbar-->   
+    <header>
+        <nav>
+            <div class="navbar" >
+                <div class="logo">
+                <img src="logo design/logo.png" alt="Logo" height="100px" width="150px">
+        </div>
+            <div class="nav"> 
+                <a href="home.html">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+           <br>
+           <div class="button">
+            <button class="move  box1" onclick="openModal('modal2')">Get started now</button>
+           
+            <button class="move box2" onclick="openModal('modal1')">Log in</button>
+      
+                </div>
+        </div>
+                        
+        </nav>
+    </header>
+    
+    <main>
+         <!-- modal for login -->
+         <div class="modal-bg" id="modal1">
+            <div class="modal-box  mod1">
+                <span class="close-btn" onclick="closeModal('modal1')"><i class="fa-solid fa-xmark"></i></span>
+                <form action="login.php" method="POST"  onsubmit="return validateLoginForm()">
+               <h2>Login to QUIZ WHIZ</h2>
+                <input type="text"  required placeholder="Email or Username"><br>
+                <input type="password"  required placeholder="Password">
+                <p class="password"><a href="password.html">Forgot Password?</a></p>
+                <button class="btn">Log In</button>
+                <p>Not registered?
+                    <a href="#" onclick="switchModal('modal1', 'modal2')">Create an account</a>
+                </p>
+                </form>
+            </div>
+        </div>
+        <!--modal for sign up-->
+        <div class="modal-bg" id="modal2">
+            <div class="modal-box  mod2"> 
+             
+                <span class="close-btn" onclick="closeModal('modal2')"><i class="fa-solid fa-xmark"></i></span>
+               
+                    <h1>Sign Up</h1>
+                    <p>Please fill in this form to create an account.</p>
+                    <hr>
+                    <form  action="register.php" method="POST" onsubmit="return validateForm(),validateSignUpForm()"> 
+                        <div class="form-group">
+                            <!-- <label for="name">Full Name</label> -->
+                            <input type="text" id="name" placeholder="Enter Your Name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="username">Username</label> -->
+                            <input type="text" id="username" placeholder="Enter Username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="email">Email</label> -->
+                            <input type="email" id="email" placeholder="Enter Your Email address" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="password">Password</label> -->
+                            <input type="password" id="password" placeholder="Enter Password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="confirm_password">Confirm Password</label> -->
+                            <input type="password" id="confirm_password" placeholder="Confirm Password" name="confirm_password" required>
+                        </div>
+                        <div class="remember">
+                            <input type="checkbox" required name="remember" id="agree">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <p class="terms">By creating an account, you agree to our <a href="#">Terms & Privacy</a>.</p>
+                        <button type="submit" class="btn">Create Account</button>
+                     </form> 
+                    <div class="alternative">
+                        <p>Already have an account?<a href="#" onclick="switchModal('modal2', 'modal1')">Log in</a>
+                    </div>
+               
+                </div>
+                </div>
+
+        <section class="about">
+           <div class="first">
+            <img src="images/about1.jpg">
+            <div class="about-text">
+             <h1>About QUIZ WHIZ</h1>
+            <p>Welcome to QUIZ WHIZ, the ultimate destination for quiz enthusiasts! 
+                Our platform is designed to challenge your knowledge, 
+                spark curiosity, and make learning fun through engaging quizzes across various topics.</p>
+                </div>
+                </div>
+               <br>
+               <div class="second">
+                <img src="images/about3.jpg" alt="Team working" style="float: right; margin-left: 20px; width: 40%;">
+                <div class="about-text">
+           <h1>Who We Are</h1>
+            <p>We are a passionate team of educators, developers, and trivia lovers who believe that learning should be both exciting and accessible.
+                 Our mission is to create an interactive and user-friendly space where people of all ages can test their knowledge, improve their skills,
+                  and have fun while doing it.</p>
+                </div>
+               </div>
+                  <br>
+                  <div class="first">
+                    <img src="images/about6.jpg">
+                    <div class="about-text">
+           <h1>What We Offer</h1>
+            <ul>
+               <li>A wide range of quizzes covering topics like General Knowledge, Science, History, Technology, and more.</li>
+                 <li>Interactive and dynamic quiz formats, including multiple-choice, true/false, and timed challenges.</li>
+                  <li>A user-friendly experience with instant feedback and score tracking.</li>
+              <li>The ability to challenge friends and compete with other quiz lovers worldwide.</li>
+            </ol>
+        </div>
+        </div>
+           <br>
+           <div class="second">
+            <img src="images/about5.jpg" alt="Team working" style="float: right; margin-left: 20px; width: 40%;">
+            <div class="about-text">
+            <h1>Our Mission</h1>
+            <p>At QUIZ WHIZ, we believe that curiosity fuels intelligence. Our goal is to provide a platform that encourages learning in a fun, engaging,
+                 and competitive way. Whether you're here to prepare for exams, challenge yourself, 
+                 or simply enjoy some trivia, we have something for everyone!</p>
+                 </div>
+                 </div>
+                <br>
+                <div class="first">
+                    <img src="images/about7.jpg">
+                    <div class="about-text">
+          <h1> Join Us Today!</h1>
+           <p>Start exploring, learning, and competing with QUIZ WHIZ! Dive into our quizzes, 
+            challenge yourself, and see how much you really know. 
+           <p> Have questions or suggestions? Contact us at quizwhiz@gmail.com.</p>
+           <p> Let’s make learning fun together! 🚀</p>
+            </div>
+            </div>
+
+        </section>
+     
+   
+    <!-- <section class="stats-container">
+      <div class="stats-box">
+          <h3>Active Users</h3>
+          <span class="counter" data-target="12000">0</span>
+      </div>
+      <div class="stats-box">
+          <h3>Top Players</h3>
+          <span class="counter" data-target="5498">0</span>
+      </div>
+      <div class="stats-box">
+          <h3>Premium Users</h3>
+          <span class="counter" data-target="1049">0</span>
+      </div>
+  </section> -->
+
+
+    </main>
+<hr>
+    <!-- Footer -->
+
+    <footer>
+        <footer>
+            <div class="footer-container">    
+    <div class="sub-panel  quick-links">
+        <a href="home.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="badges.html">Badges</a>
+        <a href="create.html">Create</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="quizz.html">Practice Quizzes</a>
+        <a href="about.html">About Us</a>
+        </div>
+    <div class="sub-panel">
+        <p>Blog</p>
+        <p>Leagal & Policies</p>
+        <p>Privacy Policy</p>
+        <p>Terms & Conditions</p>
+        <p>Disclaimer</p>
+    </div>
+    <div class="sub-panel info">
+        <a href="contact.html">Contact Us</a>
+        <p><i class="fa fa-envelope"></i> Email: quizwhiz@gmail.com</p>
+        <p><i class="fa-solid fa-phone"></i> Phone: +123 456 7890</p>
+        <P><i class="fa-solid fa-location-dot"></i> Location: New Panvel, Navi mumbai, India</P>
+    </div>
+    </div>
+    <div class="icons">
+        <p>Follow Us</p>
+        <a href="https://www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.twitter.com"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+    <hr>
+    
+    
+      <!-- Map Section -->
+      <section id="map-section">
+        <h2>Find Us Here</h2>
+        <div id="map" style="height: 400px; width: 100%;"></div>
+      </section>
+      <br>
+    <div class="footer-bottom"
+        <p>&copy; 2025 QUIZ WHIZ. All Rights Reserved.</p>
+</div>
+    </footer>
+
+
+
+<script>
+function openModal(id) {
+    document.getElementById(id).style.display = "block";
+}
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+}
+
+ // Close modal when clicking outside of it
+ window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+    }
+    }
+    function validateSignUpForm() {
+      // Get form field values
+      let username = document.getElementById("username").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value;
+      let confirmPassword = document.getElementById("confirm_password").value;
+      
+      // Validate username
+      if (username === "") {
+        alert("Username is required.");
+        return false;
+      }
+      
+      // Validate email using a regular expression pattern
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email === "" || !emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+      
+      // Validate password length
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+      
+      // Check if password and confirm password match
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return false;
+      }
+      
+      // All validations passed
+      return true;
+    }
+  
+
+
+function validateForm() {
+  let agreeCheckbox = document.getElementById("agree");
+
+  if (!agreeCheckbox.checked) {
+    alert("You must agree to the terms and conditions to proceed.");
+    return false;
+  }
+
+  return true;
+
+}
+     
+
+function validateLoginForm() {
+    let userInput = document.getElementById("userInput").value.trim();
+      let password = document.getElementById("password").value;
+
+      // Email pattern
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Validate input (must be an email OR at least 3-character username)
+      if (!(emailPattern.test(userInput) || userInput.length >= 3)) {
+        alert("Please enter a valid email or a username (at least 3 characters).");
+        return false;
+      }
+
+      // Validate password length
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+
+      return true;
+    }
+</script> 
+
+
+ <!-- Leaflet JS -->
+ <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+ <script>
+   function initMap() {
+     const map = L.map('map').setView([19.0434, 73.1175], 15); // Pillai College, Panvel Coordinates
+
+     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+       attribution: '&copy; OpenStreetMap contributors'
+     }).addTo(map);
+
+     L.marker([19.0434, 73.1175]).addTo(map)
+       .bindPopup('Pillai College, Panvel')
+       .openPopup();
+   }
+
+   document.addEventListener('DOMContentLoaded', initMap);
+
+
+ 
+
+//    document.addEventListener("DOMContentLoaded", function () {
+//         const counters = document.querySelectorAll(".counter");
+
+//         counters.forEach(counter => {
+//             counter.innerText = "0";
+//             const updateCounter = () => {
+//                 const target = +counter.getAttribute("data-target");
+//                 const count = +counter.innerText;
+//                 const increment = target / 100;
+
+//                 if (count < target) {
+//                     counter.innerText = Math.ceil(count + increment);
+//                     setTimeout(updateCounter, 20);
+//                 } else {
+//                     counter.innerText = target;
+//                 }
+//             };
+//             updateCounter();
+//         });
+//     });
+ </script>
+</body>
+</html>
