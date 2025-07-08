@@ -30,8 +30,13 @@
 - ⚡ Fast and lightweight
 
 ---
-![homepage](https://github.com/user-attachments/assets/27843dd4-6be8-4f0a-aa85-c8ec125cad25)
-![quiz](https://github.com/user-attachments/assets/bfbedf82-780f-4990-89ab-f239e4e7ede0)
+
+<h3>📸 Homepage</h3>
+<img src="https://github.com/user-attachments/assets/27843dd4-6be8-4f0a-aa85-c8ec125cad25" alt="homepage" width="600"/>
+
+<h3>📸 Quiz Page</h3>
+<img src="https://github.com/user-attachments/assets/bfbedf82-780f-4990-89ab-f239e4e7ede0" alt="quiz" width="600"/>
+
 
 
 
